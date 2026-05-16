@@ -1,5 +1,6 @@
 import loginSignup as ls
 import RSA_Keygen
+import messageManagement as mm
 
 def start():
     signedInUser = ""
@@ -29,16 +30,34 @@ def start():
                 signedInUser = username
                 print(f"Succesfully signedIn! username = {signedInUser} ")
                 public_key, private_key = RSA_Keygen.generate_key()
-                PublicKeyFile = open(r"LabMid\Files\publicKeyTable.txt", "a")
+                PublicKeyFile = open(r"Files\publicKeyTable.txt", "a")
                 PublicKeyFile.write(f"\n{signedInUser} {public_key}")
-                PrivateKeyFile = open(f"LabMid\\Files\\PrivateKeys\\{username}.txt", "w")
+                PrivateKeyFile = open(f"Files\\PrivateKeys\\{username}.txt", "w")
                 PrivateKeyFile.write(private_key)
                 PublicKeyFile.close()
                 PrivateKeyFile.close()
                 break          
-            print("Account already exists...!")
+            print("Account already exists...! Try again!")
         else:
-            print("Invalid Input")
+            print("Invalid Input! Try again")
 
+    while(True):
+        print("\n______________________________\n")
+        print("         Main Menu")
+        print("______________________________\n")
+
+        print("press 1 to send a Message ")
+        print("press 2 to View Inbox ")
+        print("press 3 to Exit ")
+        choice = int(input("Your Choice: "))
+        if choice == 1:
+            mm.sendMessage(signedInUser)
+        elif choice == 2:
+            mm.receiveMessage(signedInUser)
+        elif choice == 3:
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid Input! Try Again")        
 
 start()        
