@@ -19,15 +19,4 @@ def decryptWithAes(ciphertext, key, iv):
     return message.decode()
 
 
-original = "Hello World!"
-print(f"Original: {original}")
-
-# Encrypt
-ciphertext, key, iv = encryptWithAes(original)
-print(f"Ciphertext: {ciphertext}")
-print(f"Key: {key}")
-print(f"IV: {iv}")
-
-# Decrypt
-decrypted = decryptWithAes(ciphertext, key, iv)
-print(f"Decrypted: {decrypted}")    
+ 
